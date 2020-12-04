@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class DataGetter {
 
     public List<Integer> getIntsFromFile(String filename) {
-        List<Integer> ints = new ArrayList<Integer>();
+        List<Integer> ints = new ArrayList<>();
         try {
             File file = new File(getClass().getClassLoader().getResource(filename).getFile());
             Scanner scanner = new Scanner(file);
@@ -21,7 +21,7 @@ public class DataGetter {
     }
 
     public List<String> getLinesFromFile(String filename) {
-        List<String> strings = new ArrayList<String>();
+        List<String> strings = new ArrayList<>();
         try {
             File file = new File(getClass().getClassLoader().getResource(filename).getFile());
             Scanner scanner = new Scanner(file);
