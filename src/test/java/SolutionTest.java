@@ -126,4 +126,21 @@ public class SolutionTest {
         Assert.assertEquals(solution.getSeatId("FFFBBBFRRR"), 119);
         Assert.assertEquals(solution.getSeatId("BBFFBBFRLL"), 820);
     }
+
+    @Test
+    public void test6() {
+        SolutionDay6 solution = new SolutionDay6();
+
+        Assert.assertEquals(solution.getAnyoneYesCount(Arrays.asList("abc")), 3);
+        Assert.assertEquals(solution.getAnyoneYesCount(Arrays.asList("a", "b", "c")), 3);
+        Assert.assertEquals(solution.getAnyoneYesCount(Arrays.asList("ab", "ac")), 3);
+        Assert.assertEquals(solution.getAnyoneYesCount(Arrays.asList("a", "a", "a", "a")), 1);
+        Assert.assertEquals(solution.getAnyoneYesCount(Arrays.asList("b")), 1);
+
+        Assert.assertEquals(solution.getEveryoneYesCount(Arrays.asList("abc")), 3);
+        Assert.assertEquals(solution.getEveryoneYesCount(Arrays.asList("a", "b", "c")), 0);
+        Assert.assertEquals(solution.getEveryoneYesCount(Arrays.asList("ab", "ac")), 1);
+        Assert.assertEquals(solution.getEveryoneYesCount(Arrays.asList("a", "a", "a", "a")), 1);
+        Assert.assertEquals(solution.getEveryoneYesCount(Arrays.asList("b")), 1);
+    }
 }
