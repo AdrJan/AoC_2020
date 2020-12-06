@@ -118,4 +118,13 @@ public class SolutionTest {
                 "iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719")),
                 true);
     }
+
+    @Test
+    public void test5() {
+        SolutionDay5 solution = new SolutionDay5();
+
+        Assert.assertEquals(solution.getSeatId("FBFBBFFRLR"), 357);
+        Assert.assertEquals(solution.getSeatId("FFFBBBFRRR"), 119);
+        Assert.assertEquals(solution.getSeatId("BBFFBBFRLL"), 820);
+    }
 }
