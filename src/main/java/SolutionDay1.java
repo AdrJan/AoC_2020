@@ -27,7 +27,7 @@ public class SolutionDay1 {
         DataGetter dataGetter = new DataGetter();
         SolutionDay1 solution = new SolutionDay1();
 
-        List<Integer> data = dataGetter.getIntsFromFile("data/day1_1.txt");
+        List<Integer> data = dataGetter.getIntsFromFile("data/day1.txt");
 
         Solution.printAnswer(Solution.Answer.Answer_1, solution.getMultiplyResultFor2(data));
         Solution.printAnswer(Solution.Answer.Answer_2, solution.getMultiplyResultFor3(data));

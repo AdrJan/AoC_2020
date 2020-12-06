@@ -37,7 +37,7 @@ public class SolutionDay2 {
         DataGetter dataGetter = new DataGetter();
         SolutionDay2 solution = new SolutionDay2();
 
-        List<String> data = dataGetter.getLinesFromFile("data/day2_1.txt");
+        List<String> data = dataGetter.getLinesFromFile("data/day2.txt");
 
         int validCnt = 0;
         for (String line : data)

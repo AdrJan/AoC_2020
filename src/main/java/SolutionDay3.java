@@ -24,7 +24,7 @@ public class SolutionDay3 {
         DataGetter dataGetter = new DataGetter();
         SolutionDay3 solution = new SolutionDay3();
 
-        List<String> data = dataGetter.getLinesFromFile("data/day3_1.txt");
+        List<String> data = dataGetter.getLinesFromFile("data/day3.txt");
 
         Solution.printAnswer(Solution.Answer.Answer_1, solution.getObstacleCnt(3, 1, data));
         Solution.printAnswer(Solution.Answer.Answer_2,
