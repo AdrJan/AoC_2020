@@ -17,7 +17,7 @@ public class SolutionDay6 {
         Map<Character, Integer> yesCount = new HashMap<>();
         for (String line : input)
             for (int i = 0; i < line.length(); i++)
-                yesCount.merge(line.charAt(i), 1, (a, b) -> a + b);
+                yesCount.merge(line.charAt(i), 1, Integer::sum);
 
         int everyoneYesCount = 0;
         int groupSize = input.size();
