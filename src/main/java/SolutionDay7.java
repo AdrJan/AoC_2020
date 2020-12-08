@@ -8,17 +8,23 @@ public class SolutionDay7 {
         String divideWord = "contain";
         for(String line : input) {
             indexOfContain = line.indexOf(divideWord);
+
             String outerBag = line.substring(0, indexOfContain);
+            String[] outerBagArray =  outerBag.split(" ");
+
             String innerBagsStr = line.substring(indexOfContain + divideWord.length());
-            String[] innerBagsArray = innerBagsStr.split(",");
-            for(String innerBag : innerBagsArray) {
-                String[] innerBagArray = innerBag.split(" ");
-                String bagName = innerBagArray[0] + " " + innerBagArray[1];
-                if(allBags.containsKey(bagName)) {
+            if(!innerBagsStr.contains("no other bags.")) {
+                String[] innerBagsArray = innerBagsStr.split(",");
+                for(String innerBag : innerBagsArray) {
+                    String[] innerBagArray = innerBag.split(" ");
+                    String bagName = innerBagArray[2] + " " + innerBagArray[3];
+                    if(!allBags.containsKey(bagName))
+                        allBags.put(bagName, new HashSet<>());
+                    allBags.get(bagName).add(outerBagArray[0] + " " + outerBagArray[1]);
                 }
             }
         }
 
-        return 0;
+
     }
 }
