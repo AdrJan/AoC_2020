@@ -29,8 +29,6 @@ public class SolutionDay7 {
             }
         }
 
-        Set<String> shiny = new HashSet<>();
-        shiny.add("shiny gold");
         countOuterBags("shiny gold", allBags);
 
         return counter;
