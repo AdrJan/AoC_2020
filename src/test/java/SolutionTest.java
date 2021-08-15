@@ -151,4 +151,22 @@ public class SolutionTest {
         Assert.assertEquals(solution.getOuterBags("shiny gold", input), 4);
         Assert.assertEquals(solution.getInnerBags("shiny gold", input), 32);
     }
+
+    @Test
+    public void day8() {
+        SolutionDay8 solution = new SolutionDay8();
+        List<String> input = Arrays.asList(
+                "nop +0",
+                "acc +1",
+                "jmp +4",
+                "acc +3",
+                "jmp -3",
+                "acc -99",
+                "acc +1",
+                "jmp -4",
+                "acc +6"
+        );
+
+        Assert.assertEquals(5, solution.getAccumulator(input));
+    }
 }
