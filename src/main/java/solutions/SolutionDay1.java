@@ -1,3 +1,5 @@
+package solutions;
+
 import utils.DataGetter;
 
 import java.util.List;

@@ -1,3 +1,5 @@
+package solutions;
+
 public class Solution {
 
     public static void printAnswer(Answer answer, Object value) {

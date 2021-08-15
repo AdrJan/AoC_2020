@@ -1,10 +1,12 @@
+package solutions;
+
 import utils.DataGetter;
 
 import java.util.List;
 
 public class SolutionDay5 {
 
-    int getSeatId(String input) {
+    public int getSeatId(String input) {
         return getSeatRow(input) * 8 + getSeatCol(input);
     }
 

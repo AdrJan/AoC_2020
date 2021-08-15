@@ -1,5 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
+import solutions.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -147,6 +148,7 @@ public class SolutionTest {
                 "dotted black bags contain no other bags."
         );
 
-        Assert.assertEquals(solution.howManyBags(input), 4);
+        Assert.assertEquals(solution.getOuterBags("shiny gold", input), 4);
+        Assert.assertEquals(solution.getInnerBags("shiny gold", input), 32);
     }
 }
