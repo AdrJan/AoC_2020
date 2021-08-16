@@ -5,6 +5,7 @@ import solutions.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SolutionTest {
 
@@ -169,5 +170,42 @@ public class SolutionTest {
 
         Assert.assertEquals(5, solution.getAccumulator(input));
         Assert.assertEquals(8, solution.getFixedAccumulator(input));
+    }
+
+    @Test
+    public void day9() {
+        SolutionDay9 solution = new SolutionDay9();
+        List<Integer> input = Arrays.asList(
+                35,
+                20,
+                15,
+                25,
+                47,
+                40,
+                62,
+                55,
+                65,
+                95,
+                102,
+                117,
+                150,
+                182,
+                127,
+                219,
+                299,
+                277,
+                309,
+                576
+        );
+
+        Assert.assertEquals(127, solution.getFirstUnvalidatedNumber(5, input.stream()
+                .mapToLong(Integer::longValue)
+                .boxed()
+                .collect(Collectors.toList())));
+
+//        Assert.assertEquals(127, solution.getEncryptionWeakness(5, input.stream()
+//                .mapToLong(Integer::longValue)
+//                .boxed()
+//                .collect(Collectors.toList())));
     }
 }
