@@ -168,5 +168,6 @@ public class SolutionTest {
         );
 
         Assert.assertEquals(5, solution.getAccumulator(input));
+        Assert.assertEquals(8, solution.getFixedAccumulator(input));
     }
 }
