@@ -16,6 +16,16 @@ public class SolutionDay9 {
         return -1;
     }
 
+//TODO:
+//    public long getEncryptionWeakness(String number, List<Long> numbers) {
+//        for(int i = 1; i < numbers.size(); i++) {
+//            for(int j = 0; j < numbers.size() - i; j++) {
+//                if numbers.subList(j, j + i).stream()
+//                        .collect(Collectors.summingLong(Long::longValue));
+//            }
+//        }
+//    }
+
     private List<Long> getComb(List<Long> numbers) {
         List<Long> resultComb = new LinkedList<>();
 

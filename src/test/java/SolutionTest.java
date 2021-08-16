@@ -202,5 +202,10 @@ public class SolutionTest {
                 .mapToLong(Integer::longValue)
                 .boxed()
                 .collect(Collectors.toList())));
+
+//        Assert.assertEquals(127, solution.getEncryptionWeakness(5, input.stream()
+//                .mapToLong(Integer::longValue)
+//                .boxed()
+//                .collect(Collectors.toList())));
     }
 }
