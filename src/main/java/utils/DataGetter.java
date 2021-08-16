@@ -20,6 +20,19 @@ public class DataGetter {
         return ints;
     }
 
+    public List<Long> getLongsFromFile(String filename) {
+        List<Long> longs = new ArrayList<>();
+        try {
+            File file = new File(getClass().getClassLoader().getResource(filename).getFile());
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine())
+                longs.add(Long.parseLong(scanner.nextLine()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return longs;
+    }
+
     public List<String> getLinesFromFile(String filename) {
         List<String> strings = new ArrayList<>();
         try {
