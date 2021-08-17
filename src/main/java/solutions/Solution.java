@@ -7,7 +7,7 @@ public class Solution {
     }
 
     public enum Answer {
-        Answer_1("Answer for first part: %s."),
+        Answer_1("Answer for first part: %s"),
         Answer_2("Answer for second part: %s");
 
         String text;

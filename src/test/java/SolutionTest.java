@@ -203,9 +203,9 @@ public class SolutionTest {
                 .boxed()
                 .collect(Collectors.toList())));
 
-//        Assert.assertEquals(127, solution.getEncryptionWeakness(5, input.stream()
-//                .mapToLong(Integer::longValue)
-//                .boxed()
-//                .collect(Collectors.toList())));
+        Assert.assertEquals(62, solution.getEncryptionWeakness(127, input.stream()
+                .mapToLong(Integer::longValue)
+                .boxed()
+                .collect(Collectors.toList())));
     }
 }
