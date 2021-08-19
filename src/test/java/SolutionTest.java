@@ -213,19 +213,42 @@ public class SolutionTest {
     public void day10() {
         SolutionDay10 solution = new SolutionDay10();
         List<Integer> input = Arrays.asList(
-                16,
-                10,
-                15,
-                5,
-                1,
-                11,
-                7,
+                28,
+                33,
+                18,
+                42,
+                31,
+                14,
+                46,
+                20,
+                48,
+                47,
+                24,
+                23,
+                49,
+                45,
                 19,
-                6,
-                12,
-                4
+                38,
+                39,
+                11,
+                1,
+                32,
+                25,
+                35,
+                8,
+                17,
+                7,
+                9,
+                4,
+                2,
+                34,
+                10,
+                3
         );
 
-        Assert.assertEquals(35, solution.getMultipliedDiffs(input));
+
+
+//        Assert.assertEquals(35, solution.getMultipliedDiffs(input));
+        Assert.assertEquals(8, solution.getCombinations(input));
     }
 }
