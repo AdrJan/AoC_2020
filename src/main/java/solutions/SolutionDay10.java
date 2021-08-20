@@ -3,9 +3,7 @@ package solutions;
 import utils.DataGetter;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class SolutionDay10 {
 
@@ -33,24 +31,6 @@ public class SolutionDay10 {
         }
 
         return oneDiff * threeDiff;
-    }
-
-    //TODO: not working
-    public int getCombinations(List<Integer> input) {
-        Collections.sort(input);
-        int result = 1;
-        for (int i = 0; i < input.size() - 3; i++) {
-            int temp = 0;
-            if (input.contains(i + 1)) temp++;
-            if (input.contains(i + 2)) temp++;
-            if (input.contains(i + 3)) temp++;
-
-            if(temp == 2) result *= 2;
-            if(temp == 3) result *= 4;
-            i += temp - 1;
-        }
-
-        return result;
     }
 
     public static void main(String... args) {
