@@ -33,6 +33,28 @@ public class SolutionDay10 {
         return oneDiff * threeDiff;
     }
 
+    public int getCombinations(List<Integer> input) {
+        Collections.sort(input);
+
+        int result = 1;
+        int counter = 0;
+
+        for (int i = 0; i < input.size(); i++) {
+            int value = input.get(i);
+            if (input.contains(value + 1)) counter++;
+            if (input.contains(value + 2)) counter++;
+            if (input.contains(value + 3)) counter++;
+
+            if (counter == 3) result *= 4;
+            if (counter == 2) result *= 2;
+
+            i += counter - 1;
+            counter = 0;
+        }
+
+        return result;
+    }
+
     public static void main(String... args) {
         SolutionDay10 solution = new SolutionDay10();
 

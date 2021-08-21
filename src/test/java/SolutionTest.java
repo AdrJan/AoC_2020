@@ -249,6 +249,6 @@ public class SolutionTest {
 
 
 //        Assert.assertEquals(35, solution.getMultipliedDiffs(input));
-        Assert.assertEquals(8, solution.getCombinations(input));
+        Assert.assertEquals(19208, solution.getCombinations(input));
     }
 }
