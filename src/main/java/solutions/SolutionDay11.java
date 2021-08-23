@@ -15,7 +15,7 @@ public class SolutionDay11 {
 
         while (true) {
             boolean isChanged = false;
-            char[][] newTable = Arrays.copyOf(table, table.length);
+            char[][] newTable = Arrays.stream(table).map(char[]::clone).toArray(char[][]::new);
             for (int i = 0; i < input.size(); i++) {
                 for (int j = 0; j < input.get(i).length(); j++) {
                     int occupiedAdjacents = 0;
