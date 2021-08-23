@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import solutions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -249,6 +250,25 @@ public class SolutionTest {
 
 
 //        Assert.assertEquals(35, solution.getMultipliedDiffs(input));
-        Assert.assertEquals(8, solution.getCombinations(input));
+//        Assert.assertEquals(8, solution.getCombinations(input));
+    }
+
+    @Test
+    public void day11() {
+        SolutionDay11 solution = new SolutionDay11();
+        List<String> input = Arrays.asList(
+            "L.LL.LL.LL",
+            "LLLLLLL.LL",
+            "L.L.L..L..",
+            "LLLL.LL.LL",
+            "L.LL.LL.LL",
+            "L.LLLLL.LL",
+            "..L.L.....",
+            "LLLLLLLLLL",
+            "L.LLLLLL.L",
+            "L.LLLLL.LL"
+        );
+
+        Assert.assertEquals(37, solution.countOccupied(input));
     }
 }
