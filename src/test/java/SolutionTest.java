@@ -2,7 +2,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import solutions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -248,7 +247,6 @@ public class SolutionTest {
         );
 
 
-
 //        Assert.assertEquals(35, solution.getMultipliedDiffs(input));
 //        Assert.assertEquals(8, solution.getCombinations(input));
     }
@@ -257,19 +255,33 @@ public class SolutionTest {
     public void day11() {
         SolutionDay11 solution = new SolutionDay11();
         List<String> input = Arrays.asList(
-            "L.LL.LL.LL",
-            "LLLLLLL.LL",
-            "L.L.L..L..",
-            "LLLL.LL.LL",
-            "L.LL.LL.LL",
-            "L.LLLLL.LL",
-            "..L.L.....",
-            "LLLLLLLLLL",
-            "L.LLLLLL.L",
-            "L.LLLLL.LL"
+                "L.LL.LL.LL",
+                "LLLLLLL.LL",
+                "L.L.L..L..",
+                "LLLL.LL.LL",
+                "L.LL.LL.LL",
+                "L.LLLLL.LL",
+                "..L.L.....",
+                "LLLLLLLLLL",
+                "L.LLLLLL.L",
+                "L.LLLLL.LL"
         );
 
 //        Assert.assertEquals(37, solution.countOccupied(input, false));
         Assert.assertEquals(26, solution.countOccupied(input, true));
+    }
+
+    @Test
+    public void day12() {
+        SolutionDay12 solution = new SolutionDay12();
+        List<String> input = Arrays.asList(
+                "F10",
+                "N3",
+                "F7",
+                "R90",
+                "F11"
+        );
+
+        Assert.assertEquals(25, solution.getManhattanDistance(input));
     }
 }
