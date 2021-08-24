@@ -246,7 +246,6 @@ public class SolutionTest {
                 3
         );
 
-
 //        Assert.assertEquals(35, solution.getMultipliedDiffs(input));
 //        Assert.assertEquals(8, solution.getCombinations(input));
     }
@@ -283,5 +282,6 @@ public class SolutionTest {
         );
 
         Assert.assertEquals(25, solution.getManhattanDistance(input));
+        Assert.assertEquals(286, solution.getManhattanDistanceWithWaypoint(input));
     }
 }
