@@ -49,6 +49,72 @@ public class SolutionDay12 {
         return Math.abs(x) + Math.abs(y);
     }
 
+    public int getManhattanDistanceWithWaypoint(List<String> input) {
+        //starting position of waypoint
+        int xWaypoint = 10;
+        int yWaypoint = 1;
+        int tempValue;
+        //starting position of ship
+        int x = 0;
+        int y = 0;
+
+        for (int i = 0; i < input.size(); i++) {
+            char instruction = input.get(i).charAt(0);
+            int value = Integer.parseInt(input.get(i).substring(1));
+
+            switch (instruction) {
+                case 'N':
+                    yWaypoint += value;
+                    break;
+                case 'S':
+                    yWaypoint -= value;
+                    break;
+                case 'W':
+                    xWaypoint -= value;
+                    break;
+                case 'E':
+                    xWaypoint += value;
+                    break;
+                case 'L':
+                    if(value == 180) {
+                        xWaypoint = -xWaypoint;
+                        yWaypoint = -yWaypoint;
+                    } else if(value == 90) {
+                        tempValue = xWaypoint;
+                        xWaypoint = -yWaypoint;
+                        yWaypoint = tempValue;
+                    } else if(value == 270) {
+                        tempValue = xWaypoint;
+                        xWaypoint = yWaypoint;
+                        yWaypoint = -tempValue;
+                    }
+                    break;
+                case 'R':
+                    if(value == 180) {
+                        xWaypoint = -xWaypoint;
+                        yWaypoint = -yWaypoint;
+                    } else if(value == 90) {
+                        tempValue = xWaypoint;
+                        xWaypoint = yWaypoint;
+                        yWaypoint = -tempValue;
+                    } else if(value == 270) {
+                        tempValue = xWaypoint;
+                        xWaypoint = -yWaypoint;
+                        yWaypoint = tempValue;
+                    }
+                    break;
+                case 'F':
+                    x += xWaypoint * value;
+                    y += yWaypoint * value;
+                    break;
+                default:
+                    throw new UnsupportedOperationException();
+            }
+        }
+
+        return Math.abs(x) + Math.abs(y);
+    }
+
     private enum Direction {
         NORTH("N", 0, +1),
         EAST("E", 1, 0),
@@ -88,5 +154,6 @@ public class SolutionDay12 {
         List<String> input = new DataGetter().getLinesFromFile("data/day12.txt");
 
         Solution.printAnswer(Solution.Answer.Answer_1, solution.getManhattanDistance(input));
+        Solution.printAnswer(Solution.Answer.Answer_2, solution.getManhattanDistanceWithWaypoint(input));
     }
 }
