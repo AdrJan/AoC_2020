@@ -269,6 +269,7 @@ public class SolutionTest {
             "L.LLLLL.LL"
         );
 
-        Assert.assertEquals(37, solution.countOccupied(input));
+//        Assert.assertEquals(37, solution.countOccupied(input, false));
+        Assert.assertEquals(26, solution.countOccupied(input, true));
     }
 }
