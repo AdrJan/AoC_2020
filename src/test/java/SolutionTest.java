@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import solutions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -283,5 +284,13 @@ public class SolutionTest {
 
         Assert.assertEquals(25, solution.getManhattanDistance(input));
         Assert.assertEquals(286, solution.getManhattanDistanceWithWaypoint(input));
+    }
+
+    @Test
+    public void day13() {
+        SolutionDay13 solution = new SolutionDay13();
+        List<String> input = Arrays.asList("939", "7,13,x,x,59,x,31,19");
+
+        Assert.assertEquals(295, solution.getEarliestBusMultipliedByMinutes(input));
     }
 }
