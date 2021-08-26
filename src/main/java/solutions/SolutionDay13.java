@@ -18,7 +18,7 @@ public class SolutionDay13 {
 
         int minDiff = buses.get(0) - (earliestTimestamp % buses.get(0));
         int minBus = buses.get(0);
-        for(Integer bus : buses) {
+        for (Integer bus : buses) {
             int value = bus - (earliestTimestamp % bus);
             if (value < minDiff) {
                 minDiff = value;
