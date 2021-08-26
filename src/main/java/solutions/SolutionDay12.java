@@ -7,7 +7,6 @@ import java.util.List;
 public class SolutionDay12 {
 
     public int getManhattanDistance(List<String> input) {
-        //starting position
         int x = 0;
         int y = 0;
         Direction dir = Direction.EAST;
@@ -30,11 +29,11 @@ public class SolutionDay12 {
                     x += value;
                     break;
                 case 'L':
-                    for(int j = 0; j < value/90; j++)
+                    for (int j = 0; j < value / 90; j++)
                         dir = Direction.turnLeft(dir);
                     break;
                 case 'R':
-                    for(int j = 0; j < value/90; j++)
+                    for (int j = 0; j < value / 90; j++)
                         dir = Direction.turnRight(dir);
                     break;
                 case 'F':
@@ -76,28 +75,28 @@ public class SolutionDay12 {
                     xWaypoint += value;
                     break;
                 case 'L':
-                    if(value == 180) {
+                    if (value == 180) {
                         xWaypoint = -xWaypoint;
                         yWaypoint = -yWaypoint;
-                    } else if(value == 90) {
+                    } else if (value == 90) {
                         tempValue = xWaypoint;
                         xWaypoint = -yWaypoint;
                         yWaypoint = tempValue;
-                    } else if(value == 270) {
+                    } else if (value == 270) {
                         tempValue = xWaypoint;
                         xWaypoint = yWaypoint;
                         yWaypoint = -tempValue;
                     }
                     break;
                 case 'R':
-                    if(value == 180) {
+                    if (value == 180) {
                         xWaypoint = -xWaypoint;
                         yWaypoint = -yWaypoint;
-                    } else if(value == 90) {
+                    } else if (value == 90) {
                         tempValue = xWaypoint;
                         xWaypoint = yWaypoint;
                         yWaypoint = -tempValue;
-                    } else if(value == 270) {
+                    } else if (value == 270) {
                         tempValue = xWaypoint;
                         xWaypoint = -yWaypoint;
                         yWaypoint = tempValue;
@@ -116,17 +115,15 @@ public class SolutionDay12 {
     }
 
     private enum Direction {
-        NORTH("N", 0, +1),
-        EAST("E", 1, 0),
-        SOUTH("S", 0, -1),
-        WEST("W", -1, 0);
+        NORTH(0, +1),
+        EAST(1, 0),
+        SOUTH(0, -1),
+        WEST(-1, 0);
 
-        private String name;
-        private int xDiff;
-        private int yDiff;
+        private final int xDiff;
+        private final int yDiff;
 
-        Direction(String name, int xDiff, int yDiff) {
-            this.name = name;
+        Direction(int xDiff, int yDiff) {
             this.xDiff = xDiff;
             this.yDiff = yDiff;
         }

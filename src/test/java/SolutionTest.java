@@ -2,7 +2,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import solutions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -247,7 +246,7 @@ public class SolutionTest {
                 3
         );
 
-//        Assert.assertEquals(35, solution.getMultipliedDiffs(input));
+        Assert.assertEquals(35, solution.getMultipliedDiffs(input));
 //        Assert.assertEquals(8, solution.getCombinations(input));
     }
 
@@ -267,7 +266,7 @@ public class SolutionTest {
                 "L.LLLLL.LL"
         );
 
-//        Assert.assertEquals(37, solution.countOccupied(input, false));
+        Assert.assertEquals(37, solution.countOccupied(input, false));
         Assert.assertEquals(26, solution.countOccupied(input, true));
     }
 
@@ -292,5 +291,6 @@ public class SolutionTest {
         List<String> input = Arrays.asList("939", "7,13,x,x,59,x,31,19");
 
         Assert.assertEquals(295, solution.getEarliestBusMultipliedByMinutes(input));
+//        Assert.assertEquals("1068781", solution.getLcm(input));
     }
 }
