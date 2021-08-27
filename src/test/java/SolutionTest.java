@@ -291,6 +291,6 @@ public class SolutionTest {
         List<String> input = Arrays.asList("939", "7,13,x,x,59,x,31,19");
 
         Assert.assertEquals(295, solution.getEarliestBusMultipliedByMinutes(input));
-//        Assert.assertEquals("1068781", solution.getLcm(input));
+        Assert.assertEquals("1068781", solution.getMatchedTimestamps(input));
     }
 }
