@@ -303,7 +303,14 @@ public class SolutionTest {
                 "mem[7] = 101",
                 "mem[8] = 0"
         );
+        List<String> input2 = Arrays.asList(
+            "mask = 000000000000000000000000000000X1001X",
+            "mem[42] = 100",
+            "mask = 00000000000000000000000000000000X0XX",
+            "mem[26] = 1"
+        );
 
         Assert.assertEquals(165, solution.getSumOfAllValuesLeftInMemory(input));
+        Assert.assertEquals(208, solution.getSumOfAllValuesLeftInMemoryWithFloats(input2));
     }
 }
