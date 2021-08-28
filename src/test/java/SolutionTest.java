@@ -293,4 +293,17 @@ public class SolutionTest {
         Assert.assertEquals(295, solution.getEarliestBusMultipliedByMinutes(input));
         Assert.assertEquals("1068781", solution.getMatchedTimestamps(input));
     }
+
+    @Test
+    public void day14() {
+        SolutionDay14 solution = new SolutionDay14();
+        List<String> input = Arrays.asList(
+                "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X",
+                "mem[8] = 11",
+                "mem[7] = 101",
+                "mem[8] = 0"
+        );
+
+        Assert.assertEquals(165, solution.getSumOfAllValuesLeftInMemory(input));
+    }
 }
