@@ -320,6 +320,6 @@ public class SolutionTest {
         List<Integer> input = Arrays.asList(0, 3, 6);
 
         Assert.assertEquals(436, solution.getNthNumber(input, 2020));
-        Assert.assertEquals(436, solution.getNthNumber(input, 30000000));
+        Assert.assertEquals(175594, solution.getNthNumber(input, 30000000));
     }
 }
