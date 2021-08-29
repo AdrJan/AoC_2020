@@ -1,42 +1,56 @@
 package solutions;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class SolutionDay15 {
 
     public int getNthNumber(List<Integer> input, int nth) {
-        List<Integer> numbers = new LinkedList<>();
+        Map<Integer, Deque<Integer>> numbers = new HashMap<>();
+        for (int i = 0; i < input.size(); i++) {
+            numbers.put(input.get(i), new ArrayDeque<>());
+            numbers.get(input.get(i)).push(i);
+        }
 
-        numbers.addAll(input);
-        int turn = numbers.size() - 1;
+        int lastNumber = input.get(input.size() - 1);
+        int lastIndex = numbers.size() - 1;
 
-        while (++turn < nth) {
-            System.out.println(turn);
-            int lastIndex = turn - 1;
-            int lastNumber = numbers.get(lastIndex);
+        while (++lastIndex < nth) {
+            if(numbers.containsKey(lastNumber)) {
+                if(numbers.get(lastNumber).size() < 2) {
+                    numbers.get(0).add(lastIndex);
+                    lastNumber = 0;
+                } else {
+                    int last = numbers.get(lastNumber).removeLast();
+                    int beforeLast = numbers.get(lastNumber).removeLast();
+                    int currentNumber = last - beforeLast;
 
-            numbers.remove(lastIndex);
-            if (numbers.contains(lastNumber)) {
-                int lastNumberIndex = numbers.lastIndexOf(lastNumber);
-                numbers.add(lastNumber);
-                numbers.add(lastIndex - lastNumberIndex);
-            } else {
-                numbers.add(lastNumber);
-                numbers.add(0);
+                    if(!numbers.containsKey(currentNumber))
+                        numbers.put(currentNumber, new ArrayDeque<>());
+
+                    numbers.get(lastNumber).add(beforeLast);
+                    numbers.get(lastNumber).add(last);
+                    numbers.get(currentNumber).add(lastIndex);
+
+                    lastNumber = currentNumber;
+                }
             }
         }
 
-        return numbers.get(turn - 1);
+        return lastNumber;
     }
 
+    //1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+    //0 3 6 0 3 3 1 0 4  0  2  0  2  2  1  8  0  5  0  2
+    //(0, 0) (3, 1) (6, 2) 3 turn
+    //(0, 3) (3, 1) (6, 2) 4 turn
+    //(0, 3) (3, 4) (6, 2) 5 turn
+    //(0, 3) (3, 5)
+    //TODO: OPTIMIZE
     public static void main(String... args) {
         SolutionDay15 solution = new SolutionDay15();
 
         List<Integer> input = Arrays.asList(18, 11, 9, 0, 5, 1);
 
-        //Needs smarter approach - brute force is not sufficient
         Solution.printAnswer(Solution.Answer.Answer_1, solution.getNthNumber(input, 2020));
         Solution.printAnswer(Solution.Answer.Answer_2, solution.getNthNumber(input, 30000000));
     }
