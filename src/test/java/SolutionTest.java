@@ -322,4 +322,25 @@ public class SolutionTest {
         Assert.assertEquals(436, solution.getNthNumber(input, 2020));
         Assert.assertEquals(175594, solution.getNthNumber(input, 30000000));
     }
+
+    @Test
+    public void day16() {
+        SolutionDay16 solution = new SolutionDay16();
+        List<String> input = Arrays.asList(
+                "class: 1-3 or 5-7",
+                "row: 6-11 or 33-44",
+                "seat: 13-40 or 45-50",
+                "\n",
+                "your ticket:",
+                "7,1,14",
+                "\n",
+                "nearby tickets:",
+                "7,3,47",
+                "40,4,50",
+                "55,2,20",
+                "38,6,12"
+        );
+
+        Assert.assertEquals(71, solution.getSumOfInvalids(input));
+    }
 }
