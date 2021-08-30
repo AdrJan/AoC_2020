@@ -36,10 +36,18 @@ public class SolutionDay16 {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
 
-           resultSum += getInvalidValues(ticketValues, ranges).stream().reduce(0, Integer::sum);
+            resultSum += getInvalidValues(ticketValues, ranges)
+                    .stream()
+                    .reduce(0, Integer::sum);
         }
 
         return resultSum;
+    }
+
+    private List<Integer> getInvalidValues(List<Integer> ticketValues, List<List<Integer>> ranges) {
+        return ticketValues.stream()
+                .filter(x -> !isInRanges(x, ranges))
+                .collect(Collectors.toList());
     }
 
     private boolean isInRange(int value, List<Integer> range) {
@@ -54,12 +62,6 @@ public class SolutionDay16 {
         for (List<Integer> range : ranges)
             result = result || isInRange(value, range);
         return result;
-    }
-
-    private List<Integer> getInvalidValues(List<Integer> ticketValues, List<List<Integer>> ranges) {
-        return ticketValues.stream()
-                .filter(x -> !isInRanges(x, ranges))
-                .collect(Collectors.toList());
     }
 
     public static void main(String... args) {
