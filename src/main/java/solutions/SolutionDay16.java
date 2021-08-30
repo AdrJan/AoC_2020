@@ -31,8 +31,7 @@ public class SolutionDay16 {
         int resultSum = 0;
         lineIndex += 5;
         for (int i = lineIndex; i < input.size(); i++) {
-            List<Integer> ticketValues = Arrays.asList(input.get(i).split(","))
-                    .stream()
+            List<Integer> ticketValues = Arrays.stream(input.get(i).split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
 
