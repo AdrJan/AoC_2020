@@ -2,10 +2,7 @@ package solutions;
 
 import utils.DataGetter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -74,7 +71,39 @@ public class SolutionDay16 {
                             .collect(Collectors.toList()));
         }
 
+        while (true) {
+            System.out.println("s");
+            Set<Integer> possibleValuesColumn;
+            for (int i = 0; i < possibleValues.get(0).size(); i++) {
+                possibleValuesColumn = new HashSet<>();
+                for (int j = 0; j < possibleValues.size(); j++) {
+                    if (j == 0)
+                        possibleValuesColumn = possibleValues.get(j).get(i);
+                    else
+                        possibleValuesColumn.retainAll(possibleValues.get(j).get(i));
+                }
+                changeColumn(possibleValues, possibleValuesColumn, i);
+            }
+
+            for(int i = 0; i < possibleValues.get(0).size(); i++) {
+                if(possibleValues.get(0).get(i).size() == 1)
+                    for(int j = 0; j < possibleValues.get(0).size(); j++) {
+                        if(j != i) {
+                            possibleValues.get(0).get(j).removeAll(possibleValues.get(0).get(i));
+                        }
+                    }
+            }
+
+            break;
+        }
+
         return 0;
+    }
+
+    private void changeColumn(List<List<Set<Integer>>> possibleValues,
+                              Set<Integer> updatedValue, int columnId) {
+        for (int i = 0; i < possibleValues.get(0).size(); i++)
+            possibleValues.get(i).set(columnId, updatedValue);
     }
 
     private Set<Integer> getPossibleFields(List<List<Integer>> ranges, int value) {
