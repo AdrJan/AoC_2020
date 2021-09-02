@@ -49,7 +49,7 @@ public class SolutionDay16 {
         List<List<Integer>> ranges = new ArrayList<>();
         while (true) {
             String line = input.get(lineIndex);
-            if (line.equals("\n")) break;
+            if (line.equals("")) break;
 
             Matcher matcher = pattern.matcher(line);
 
@@ -59,7 +59,13 @@ public class SolutionDay16 {
             lineIndex++;
         }
 
-        lineIndex += 5;
+        lineIndex += 2;
+        List<Integer> yourTicket = Arrays.stream(input.get(lineIndex)
+                .split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        lineIndex += 3;
         int ticketIndex = 0;
         List<List<Set<Integer>>> possibleValues = new ArrayList<>();
         for (int i = lineIndex; i < input.size(); i++) {
@@ -69,10 +75,15 @@ public class SolutionDay16 {
                             .map(Integer::parseInt)
                             .map(x -> getPossibleFields(ranges, x))
                             .collect(Collectors.toList()));
+
         }
 
+        possibleValues = possibleValues
+                .stream()
+                .filter(x -> x.stream().noneMatch(Set::isEmpty))
+                .collect(Collectors.toList());
+
         while (true) {
-            System.out.println("s");
             Set<Integer> possibleValuesColumn;
             for (int i = 0; i < possibleValues.get(0).size(); i++) {
                 possibleValuesColumn = new HashSet<>();
@@ -85,21 +96,28 @@ public class SolutionDay16 {
                 changeColumn(possibleValues, possibleValuesColumn, i);
             }
 
-            for(int i = 0; i < possibleValues.get(0).size(); i++) {
-                if(possibleValues.get(0).get(i).size() == 1)
-                    for(int j = 0; j < possibleValues.get(0).size(); j++) {
-                        if(j != i) {
+            for (int i = 0; i < possibleValues.get(0).size(); i++) {
+                if (possibleValues.get(0).get(i).size() == 1)
+                    for (int j = 0; j < possibleValues.get(0).size(); j++) {
+                        if (j != i) {
                             possibleValues.get(0).get(j).removeAll(possibleValues.get(0).get(i));
                         }
                     }
             }
 
-            break;
+            if (isFound(possibleValues.get(0)))
+                break;
         }
 
         return 0;
     }
 
+//    12-0 73
+//    8-1 59
+//    4-2 79
+//    14-3 167
+//    19-4 179
+//    2-5 149
     private void changeColumn(List<List<Set<Integer>>> possibleValues,
                               Set<Integer> updatedValue, int columnId) {
         for (int i = 0; i < possibleValues.get(0).size(); i++)
@@ -133,11 +151,21 @@ public class SolutionDay16 {
         return result;
     }
 
+    private boolean isFound(List<Set<Integer>> possibleValuesRow) {
+        boolean result = true;
+        for(int i = 0; i < possibleValuesRow.size(); i++)
+            result = result && (possibleValuesRow.get(i).size() == 1);
+        return result;
+    }
+
     public static void main(String... args) {
         SolutionDay16 solution = new SolutionDay16();
 
         List<String> input = new DataGetter().getLinesFromFile("data/day16.txt");
 
         Solution.printAnswer(Solution.Answer.Answer_1, solution.getSumOfInvalids(input));
+        Solution.printAnswer(
+                Solution.Answer.Answer_2,
+                solution.getMultipliedFieldValues(input, "departure"));
     }
 }
