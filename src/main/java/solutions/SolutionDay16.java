@@ -42,8 +42,10 @@ public class SolutionDay16 {
         return resultSum;
     }
 
-    public int getMultipliedFieldValues(List<String> input, String fieldStartWith) {
+    //TODO: needs refactor
+    public long getMultipliedFieldValues(List<String> input, int firstPositions) {
         int lineIndex = 0;
+        long result = 1;
 
         Pattern pattern = Pattern.compile("(\\d+)");
         List<List<Integer>> ranges = new ArrayList<>();
@@ -75,50 +77,55 @@ public class SolutionDay16 {
                             .map(Integer::parseInt)
                             .map(x -> getPossibleFields(ranges, x))
                             .collect(Collectors.toList()));
-
         }
 
+        //Remove invalid tickets
         possibleValues = possibleValues
                 .stream()
                 .filter(x -> x.stream().noneMatch(Set::isEmpty))
                 .collect(Collectors.toList());
 
-        while (true) {
-            Set<Integer> possibleValuesColumn;
-            for (int i = 0; i < possibleValues.get(0).size(); i++) {
-                possibleValuesColumn = new HashSet<>();
-                for (int j = 0; j < possibleValues.size(); j++) {
-                    if (j == 0)
-                        possibleValuesColumn = possibleValues.get(j).get(i);
-                    else
-                        possibleValuesColumn.retainAll(possibleValues.get(j).get(i));
-                }
-                changeColumn(possibleValues, possibleValuesColumn, i);
-            }
+        excludePossibilities(possibleValues);
 
-            for (int i = 0; i < possibleValues.get(0).size(); i++) {
-                if (possibleValues.get(0).get(i).size() == 1)
-                    for (int j = 0; j < possibleValues.get(0).size(); j++) {
-                        if (j != i) {
-                            possibleValues.get(0).get(j).removeAll(possibleValues.get(0).get(i));
-                        }
-                    }
-            }
+        for (int i = 0; i < firstPositions; i++)
+            result *= yourTicket.get(getMappedPosition(i, possibleValues.get(0)));
 
-            if (isFound(possibleValues.get(0)))
-                break;
-        }
-
-        return 0;
+        return result;
     }
 
-//    12-0 73
-//    8-1 59
-//    4-2 79
-//    14-3 167
-//    19-4 179
-//    2-5 149
-    private void changeColumn(List<List<Set<Integer>>> possibleValues,
+    private void excludePossibilities(List<List<Set<Integer>>> possibleValues) {
+        do {
+            excludeInColumns(possibleValues);
+            excludeInRows(possibleValues);
+        } while (!isFound(possibleValues.get(0)));
+    }
+
+    private void excludeInColumns(List<List<Set<Integer>>> possibleValues) {
+        Set<Integer> possibleValuesColumn;
+        for (int i = 0; i < possibleValues.get(0).size(); i++) {
+            possibleValuesColumn = new HashSet<>();
+            for (int j = 0; j < possibleValues.size(); j++) {
+                if (j == 0)
+                    possibleValuesColumn = possibleValues.get(j).get(i);
+                else
+                    possibleValuesColumn.retainAll(possibleValues.get(j).get(i));
+            }
+            modifyColumn(possibleValues, possibleValuesColumn, i);
+        }
+    }
+
+    private void excludeInRows(List<List<Set<Integer>>> possibleValues) {
+        for (int i = 0; i < possibleValues.get(0).size(); i++) {
+            if (possibleValues.get(0).get(i).size() == 1)
+                for (int j = 0; j < possibleValues.get(0).size(); j++) {
+                    if (j != i) {
+                        possibleValues.get(0).get(j).removeAll(possibleValues.get(0).get(i));
+                    }
+                }
+        }
+    }
+
+    private void modifyColumn(List<List<Set<Integer>>> possibleValues,
                               Set<Integer> updatedValue, int columnId) {
         for (int i = 0; i < possibleValues.get(0).size(); i++)
             possibleValues.get(i).set(columnId, updatedValue);
@@ -127,7 +134,7 @@ public class SolutionDay16 {
     private Set<Integer> getPossibleFields(List<List<Integer>> ranges, int value) {
         return IntStream.range(0, ranges.size())
                 .filter(i -> isInRange(value, ranges.get(i)))
-                .mapToObj(i -> i)
+                .boxed()
                 .collect(Collectors.toSet());
     }
 
@@ -153,9 +160,16 @@ public class SolutionDay16 {
 
     private boolean isFound(List<Set<Integer>> possibleValuesRow) {
         boolean result = true;
-        for(int i = 0; i < possibleValuesRow.size(); i++)
-            result = result && (possibleValuesRow.get(i).size() == 1);
+        for (Set<Integer> integers : possibleValuesRow)
+            result = result && (integers.size() == 1);
         return result;
+    }
+
+    private int getMappedPosition(int position, List<Set<Integer>> possibleValues) {
+        for (int i = 0; i < possibleValues.size(); i++)
+            if (possibleValues.get(i).contains(position))
+                return i;
+        return -1;
     }
 
     public static void main(String... args) {
@@ -164,8 +178,6 @@ public class SolutionDay16 {
         List<String> input = new DataGetter().getLinesFromFile("data/day16.txt");
 
         Solution.printAnswer(Solution.Answer.Answer_1, solution.getSumOfInvalids(input));
-        Solution.printAnswer(
-                Solution.Answer.Answer_2,
-                solution.getMultipliedFieldValues(input, "departure"));
+        Solution.printAnswer(Solution.Answer.Answer_2, solution.getMultipliedFieldValues(input, 6));
     }
 }

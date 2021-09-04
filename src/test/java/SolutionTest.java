@@ -355,7 +355,7 @@ public class SolutionTest {
                 "5,14,9"
         );
 
-        Assert.assertEquals(12, solution.getMultipliedFieldValues(input2, "class"));
+        Assert.assertEquals(12, solution.getMultipliedFieldValues(input2, 1));
 //        Assert.assertEquals(71, solution.getSumOfInvalids(input));
     }
 }
