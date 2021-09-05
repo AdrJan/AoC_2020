@@ -356,6 +356,18 @@ public class SolutionTest {
         );
 
         Assert.assertEquals(12, solution.getMultipliedFieldValues(input2, 1));
-//        Assert.assertEquals(71, solution.getSumOfInvalids(input));
+        Assert.assertEquals(71, solution.getSumOfInvalids(input));
+    }
+
+    @Test
+    public void day17() {
+        SolutionDay17 solution = new SolutionDay17();
+        List<String> input = Arrays.asList(
+                ".#.",
+                "..#",
+                "###"
+        );
+
+        Assert.assertEquals(112, solution.getActiveCubes(6, input));
     }
 }
